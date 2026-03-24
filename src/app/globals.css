@@ -26,8 +26,8 @@ html {
 body {
   background-color: #000000;
   background-image:
-    linear-gradient(rgba(0, 31, 255, 0.04) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0, 31, 255, 0.04) 1px, transparent 1px);
+    linear-gradient(rgba(0, 31, 255, 0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 31, 255, 0.1) 1px, transparent 1px);
   background-size: 40px 40px;
   background-attachment: fixed;
   color: #fff;
