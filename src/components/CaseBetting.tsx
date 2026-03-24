@@ -110,7 +110,7 @@ export default function CaseBetting() {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.2 }}
-              className="shrink-0 text-center lg:text-right"
+              className="shrink-0 text-left lg:text-right"
             >
               <span
                 className="block font-console font-bold text-accent leading-none"

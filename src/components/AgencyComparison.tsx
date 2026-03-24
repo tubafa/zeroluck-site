@@ -84,12 +84,12 @@ export default function AgencyComparison() {
               className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6"
             >
               {/* Agency side */}
-              <div className="p-4 md:p-5 border border-white/8 bg-white/[0.02]" style={{ opacity: 0.5 }}>
-                <span className="block md:hidden font-console text-[11px] uppercase tracking-widest mb-2" style={{ color: "rgba(255,68,68,0.6)" }}>
+              <div className="p-4 md:p-5 border border-white/8 bg-white/[0.02]" style={{ opacity: 0.7 }}>
+                <span className="block md:hidden font-console text-[11px] uppercase tracking-widest mb-2" style={{ color: "rgba(255,102,102,0.8)" }}>
                   Обычное агентство
                 </span>
                 <p className="text-text-secondary text-base md:text-lg leading-relaxed flex items-baseline gap-3">
-                  <span className="shrink-0 font-bold text-lg" style={{ color: "#FF4444" }}>
+                  <span className="shrink-0 font-bold text-lg" style={{ color: "#FF6666" }}>
                     ✕
                   </span>
                   {row.agency}

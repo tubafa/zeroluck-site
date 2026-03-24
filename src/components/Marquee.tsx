@@ -26,6 +26,7 @@ export default function Marquee() {
           display: "flex",
           whiteSpace: "nowrap",
           width: "max-content",
+          WebkitTransform: "translateZ(0)",
         }}
       >
         <span className="marquee-glow marquee-text-mobile" style={{ fontSize: "1.15rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.05em", color: "#FFFFFF", whiteSpace: "nowrap" }}>

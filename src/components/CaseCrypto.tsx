@@ -49,7 +49,7 @@ export default function CaseCrypto() {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.2 }}
-              className="shrink-0 text-center lg:text-left"
+              className="shrink-0 text-left lg:text-left"
             >
               <span
                 className="block font-console font-bold text-accent leading-none"

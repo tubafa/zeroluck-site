@@ -155,12 +155,12 @@ export default function CaseMedical() {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.2 }}
-              className="shrink-0 text-center lg:text-right"
+              className="shrink-0 w-full lg:w-auto text-left lg:text-right"
             >
               <span
                 className="block font-console font-bold leading-none"
                 style={{
-                  fontSize: "64px",
+                  fontSize: "clamp(48px, 10vw, 64px)",
                   color: "#00FF88",
                   textShadow:
                     "0 0 20px rgba(0,255,136,0.6), 0 0 40px rgba(0,255,136,0.3)",
