@@ -77,7 +77,7 @@ export default function CaseCrypto() {
                 <p className="text-accent font-console font-bold uppercase mb-2 tracking-wider" style={{ fontSize: "18px" }}>
                   Проблема
                 </p>
-                <p style={{ fontSize: "16px", lineHeight: 1.7, color: "rgba(255,255,255,0.8)" }}>
+                <p style={{ fontSize: "16px", lineHeight: 1.7, color: "#FFFFFF" }}>
                   Нет системы платного привлечения. Нет атрибуции — непонятно
                   какой канал работает. Активации стагнируют.
                 </p>
@@ -92,7 +92,7 @@ export default function CaseCrypto() {
                 <p className="text-accent font-console font-bold uppercase mb-2 tracking-wider" style={{ fontSize: "18px" }}>
                   Что сделали
                 </p>
-                <p style={{ fontSize: "16px", lineHeight: 1.7, color: "rgba(255,255,255,0.8)" }}>
+                <p style={{ fontSize: "16px", lineHeight: 1.7, color: "#FFFFFF" }}>
                   Выстроили performance-маркетинг с нуля: Meta, Google, In-App,
                   Telegram, DSP в 30+ странах. Собрали стек атрибуции: AppsFlyer
                   + Keitaro + Power BI.
@@ -117,7 +117,7 @@ export default function CaseCrypto() {
                         fontSize: "13px",
                         padding: "8px 16px",
                         borderColor: "rgba(0,31,255,0.3)",
-                        color: "rgba(255,255,255,0.8)",
+                        color: "#FFFFFF",
                       }}
                     >
                       {metric}

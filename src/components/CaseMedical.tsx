@@ -91,7 +91,7 @@ export default function CaseMedical() {
                 >
                   Проблема
                 </p>
-                <p style={{ fontSize: "16px", lineHeight: 1.7, color: "rgba(255,255,255,0.8)" }}>
+                <p style={{ fontSize: "16px", lineHeight: 1.7, color: "#FFFFFF" }}>
                   Новый медицинский центр премиум-класса. Стационар пустой. Нет
                   системы привлечения пациентов, нет CRM, команда не обучена
                   работе с лидами.
@@ -110,7 +110,7 @@ export default function CaseMedical() {
                 >
                   Что сделали
                 </p>
-                <p style={{ fontSize: "16px", lineHeight: 1.7, color: "rgba(255,255,255,0.8)" }}>
+                <p style={{ fontSize: "16px", lineHeight: 1.7, color: "#FFFFFF" }}>
                   Собрали команду специалистов с нуля. Внедрили и настроили
                   CRM-систему. Обучили персонал работе с воронкой: от первого
                   звонка до повторного визита. Простроили маркетинговые воронки
@@ -139,7 +139,7 @@ export default function CaseMedical() {
                         fontSize: "13px",
                         padding: "8px 16px",
                         borderColor: "rgba(0,255,136,0.2)",
-                        color: "rgba(255,255,255,0.8)",
+                        color: "#FFFFFF",
                       }}
                     >
                       {metric}

@@ -77,7 +77,7 @@ export default function CaseIGaming() {
                 <p className="text-accent font-console font-bold uppercase mb-2 tracking-wider" style={{ fontSize: "18px" }}>
                   Проблема
                 </p>
-                <p style={{ fontSize: "16px", lineHeight: 1.7, color: "rgba(255,255,255,0.8)" }}>
+                <p style={{ fontSize: "16px", lineHeight: 1.7, color: "#FFFFFF" }}>
                   Нужен запуск спортсбука и казино в Центральной Азии с нуля.
                   Локальный рынок не изучен — нет данных по аудитории, нет
                   адаптированного контента. Каналы привлечения отсутствуют.
@@ -94,7 +94,7 @@ export default function CaseIGaming() {
                 <p className="text-accent font-console font-bold uppercase mb-2 tracking-wider" style={{ fontSize: "18px" }}>
                   Что сделали
                 </p>
-                <p style={{ fontSize: "16px", lineHeight: 1.7, color: "rgba(255,255,255,0.8)" }}>
+                <p style={{ fontSize: "16px", lineHeight: 1.7, color: "#FFFFFF" }}>
                   Запустили локализованную коммуникационную стратегию под рынок
                   Центральной Азии. Оптимизировали источники трафика и выстроили
                   performance-воронку. Построили полный цикл контент-продакшна:
@@ -122,7 +122,7 @@ export default function CaseIGaming() {
                         fontSize: "13px",
                         padding: "8px 16px",
                         borderColor: "rgba(0,31,255,0.3)",
-                        color: "rgba(255,255,255,0.8)",
+                        color: "#FFFFFF",
                       }}
                     >
                       {metric}

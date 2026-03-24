@@ -54,7 +54,7 @@ export default function CaseBetting() {
                 <p className="text-accent font-console font-bold uppercase mb-2 tracking-wider" style={{ fontSize: "18px" }}>
                   Проблема
                 </p>
-                <p style={{ fontSize: "16px", lineHeight: 1.7, color: "rgba(255,255,255,0.8)" }}>
+                <p style={{ fontSize: "16px", lineHeight: 1.7, color: "#FFFFFF" }}>
                   Маркетинг дорогой и не масштабируется. Команды нет. Нужен выход
                   на 4 новых рынка.
                 </p>
@@ -69,7 +69,7 @@ export default function CaseBetting() {
                 <p className="text-accent font-console font-bold uppercase mb-2 tracking-wider" style={{ fontSize: "18px" }}>
                   Что сделали
                 </p>
-                <p style={{ fontSize: "16px", lineHeight: 1.7, color: "rgba(255,255,255,0.8)" }}>
+                <p style={{ fontSize: "16px", lineHeight: 1.7, color: "#FFFFFF" }}>
                   Собрали команду 30+ человек: CRM, Affiliate, Media Buying,
                   Creative. Запустили продукты в 4 регионах с полной
                   локализацией. Внедрили ROI-аналитику.
@@ -94,7 +94,7 @@ export default function CaseBetting() {
                         fontSize: "13px",
                         padding: "8px 16px",
                         borderColor: "rgba(0,31,255,0.3)",
-                        color: "rgba(255,255,255,0.8)",
+                        color: "#FFFFFF",
                       }}
                     >
                       {metric}

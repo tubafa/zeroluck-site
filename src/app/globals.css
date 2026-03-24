@@ -13,7 +13,7 @@
 @theme {
   --color-accent: #001FFF;
   --color-dark: #000000;
-  --color-text-secondary: rgba(255, 255, 255, 0.85);
+  --color-text-secondary: #FFFFFF;
   --font-console: "Classic Console Neue", "JetBrains Mono", "IBM Plex Mono", monospace;
   --font-mono: "Classic Console Neue", "JetBrains Mono", "IBM Plex Mono", monospace;
   --font-sans: "Classic Console Neue", "JetBrains Mono", "IBM Plex Mono", monospace;
