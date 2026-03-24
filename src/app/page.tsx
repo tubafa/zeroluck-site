@@ -27,7 +27,7 @@ import CaseIGaming from "@/components/CaseIGaming";
 import AgencyComparison from "@/components/AgencyComparison";
 import Reporting from "@/components/Reporting";
 import Urgency from "@/components/Urgency";
-import InterCTA from "@/components/InterCTA";
+
 
 export default function Home() {
   return (
@@ -68,8 +68,6 @@ export default function Home() {
       <CaseIGaming />
       <GlitchLine />
       <AgencyComparison />
-      <GlitchLine />
-      <InterCTA />
       <GlitchLine />
       <About />
       <GlitchLine />
