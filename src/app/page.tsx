@@ -20,6 +20,7 @@ import ParallaxGrid from "@/components/ParallaxGrid";
 import ScrollProgress from "@/components/ScrollProgress";
 import BackToTop from "@/components/BackToTop";
 import GlitchLine from "@/components/GlitchLine";
+import CaseStudiesHeading from "@/components/CaseStudiesHeading";
 import CaseMedical from "@/components/CaseMedical";
 import CaseCrypto from "@/components/CaseCrypto";
 import CaseBetting from "@/components/CaseBetting";
@@ -59,13 +60,16 @@ export default function Home() {
       <GlitchLine />
       <Founder />
       <GlitchLine />
-      <CaseMedical />
-      <GlitchLine />
-      <CaseCrypto />
-      <GlitchLine />
-      <CaseBetting />
-      <GlitchLine />
-      <CaseIGaming />
+      <div id="cases">
+        <CaseStudiesHeading />
+        <CaseMedical />
+        <GlitchLine />
+        <CaseCrypto />
+        <GlitchLine />
+        <CaseBetting />
+        <GlitchLine />
+        <CaseIGaming />
+      </div>
       <GlitchLine />
       <AgencyComparison />
       <GlitchLine />

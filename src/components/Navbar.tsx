@@ -9,6 +9,7 @@ const navLinks = [
   { label: "Услуги", href: "#services" },
   { label: "Как мы работаем", href: "#process" },
   { label: "Основатель", href: "#founder" },
+  { label: "Кейсы", href: "#cases" },
   { label: "О компании", href: "#about" },
   { label: "FAQ", href: "#faq" },
 ];

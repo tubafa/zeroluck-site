@@ -146,6 +146,14 @@ export default function Services() {
               </motion.li>
             ))}
           </ul>
+          <motion.a
+            href="#cta"
+            className="inline-block bg-accent text-white font-console font-bold uppercase px-8 py-4 mt-8 glow-blue cta-btn"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.97 }}
+          >
+            Заказать сессию
+          </motion.a>
         </motion.div>
 
         {/* Card 3 — Полное ведение (Premium) */}

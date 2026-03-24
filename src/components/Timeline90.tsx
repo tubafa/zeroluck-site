@@ -44,7 +44,7 @@ export default function Timeline90() {
             whileInView={{ scaleX: 1 }}
             viewport={{ once: true, amount: 0.3 }}
             transition={{ duration: 1, ease: "easeOut" }}
-            className="absolute top-[18px] left-0 right-0 h-[2px] origin-left"
+            className="absolute top-[6px] left-0 right-0 h-[2px] origin-left"
             style={{
               background: "linear-gradient(90deg, rgba(0,31,255,0.2), rgba(0,31,255,0.8), rgba(0,31,255,0.2))",
               boxShadow: "0 0 10px rgba(0,31,255,0.3)",
@@ -63,16 +63,18 @@ export default function Timeline90() {
               >
                 {/* Blue dot */}
                 <div
-                  className="absolute top-0 left-1/2 -translate-x-1/2 w-[14px] h-[14px] rounded-full z-10"
+                  className="absolute left-1/2 -translate-x-1/2 -translate-y-1/2 w-[14px] h-[14px] rounded-full z-10"
                   style={{
+                    top: "6px",
                     background: "#001FFF",
                     boxShadow: "0 0 12px rgba(0,31,255,0.8), 0 0 24px rgba(0,31,255,0.4), 0 0 40px rgba(0,31,255,0.2)",
                   }}
                 />
                 {/* Pulse ring */}
                 <div
-                  className="absolute top-0 left-1/2 -translate-x-1/2 w-[14px] h-[14px] rounded-full z-[9]"
+                  className="absolute left-1/2 -translate-x-1/2 -translate-y-1/2 w-[14px] h-[14px] rounded-full z-[9]"
                   style={{
+                    top: "6px",
                     border: "1px solid rgba(0,31,255,0.5)",
                     animation: "ping 2s cubic-bezier(0, 0, 0.2, 1) infinite",
                     animationDelay: `${i * 0.3}s`,

@@ -38,11 +38,11 @@ export default function About() {
         </motion.p>
       </motion.div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 max-w-4xl mx-auto auto-rows-fr">
         {teamMembers.map((member, index) => (
           <motion.div
             key={index}
-            className="border-glow p-6 corner-brackets transition-shadow duration-300"
+            className="border-glow p-6 corner-brackets transition-shadow duration-300 h-full"
             style={{
               borderTop: `3px solid ${member.color}`,
             }}
