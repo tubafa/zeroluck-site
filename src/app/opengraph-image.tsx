@@ -37,13 +37,13 @@ export default async function Image() {
               left: 0,
               width: "100%",
               height: 1,
-              backgroundColor: "rgba(0,31,255,0.08)",
+              backgroundColor: "rgba(0,31,255,0.18)",
               display: "flex",
             }}
           />
         ))}
         {/* Grid lines - vertical */}
-        {Array.from({ length: 30 }).map((_, i) => (
+        {Array.from({ length: 31 }).map((_, i) => (
           <div
             key={`v${i}`}
             style={{
@@ -52,7 +52,7 @@ export default async function Image() {
               left: i * 40,
               width: 1,
               height: "100%",
-              backgroundColor: "rgba(0,31,255,0.08)",
+              backgroundColor: "rgba(0,31,255,0.18)",
               display: "flex",
             }}
           />
