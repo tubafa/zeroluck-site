@@ -57,7 +57,17 @@ export default function QuizModal() {
       setStep((s) => s + 1);
       setOtherText("");
     } else {
-      // Save to localStorage and log
+      // Generate lead ID and save to localStorage
+      const leadId = `lead_${Date.now()}_${Math.random().toString(36).substr(2, 6)}`;
+      const leadData = {
+        id: leadId,
+        answers: { ...answers },
+        timestamp: new Date().toISOString(),
+      };
+      localStorage.setItem("zeroluck_lead", JSON.stringify(leadData));
+      console.log("Lead created:", leadData);
+
+      // Also save quiz data separately (legacy)
       const data = { ...answers, completedAt: new Date().toISOString() };
       localStorage.setItem("zeroluck_quiz", JSON.stringify(data));
       console.log("Quiz completed:", data);
@@ -484,6 +494,40 @@ function StepPain({
 
 /* ----- Result Screen with Cal.com ----- */
 function ResultScreen() {
+  useEffect(() => {
+    // Listen for Cal.com booking success via postMessage
+    const handleMessage = (e: MessageEvent) => {
+      if (
+        e.data?.type === "CAL:bookingSuccessful" ||
+        (typeof e.data === "string" && e.data.includes("bookingSuccessful"))
+      ) {
+        setTimeout(() => {
+          window.location.href = "/thank-you";
+        }, 2000);
+      }
+    };
+    window.addEventListener("message", handleMessage);
+
+    // Also try Cal.com's official callback API
+    try {
+      const Cal = (window as any).Cal;
+      if (Cal) {
+        Cal("on", {
+          action: "bookingSuccessful",
+          callback: () => {
+            setTimeout(() => {
+              window.location.href = "/thank-you";
+            }, 2000);
+          },
+        });
+      }
+    } catch {
+      // Cal global may not be available
+    }
+
+    return () => window.removeEventListener("message", handleMessage);
+  }, []);
+
   return (
     <div>
       <h3 className="font-console text-xl md:text-2xl font-bold text-white uppercase mb-3">
