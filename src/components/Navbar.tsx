@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
+import { useQuiz } from "./QuizProvider";
 
 const navLinks = [
   { label: "Проблема", href: "#problem" },
@@ -17,6 +18,7 @@ const navLinks = [
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const { openQuiz } = useQuiz();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -61,13 +63,13 @@ export default function Navbar() {
             ))}
           </div>
 
-          <a
-            href="#cta"
+          <button
+            onClick={openQuiz}
             className="hidden md:inline-flex items-center px-5 py-2 font-console text-sm font-medium text-white rounded-sm nav-cta-pulse transition-all duration-200 hover:brightness-125"
             style={{ backgroundColor: "#001FFF" }}
           >
             Записаться на разбор
-          </a>
+          </button>
 
           <button
             onClick={() => setMobileOpen((prev) => !prev)}
@@ -101,14 +103,13 @@ export default function Navbar() {
                   {link.label}
                 </a>
               ))}
-              <a
-                href="#cta"
-                onClick={closeMobile}
+              <button
+                onClick={() => { closeMobile(); openQuiz(); }}
                 className="mt-2 inline-flex items-center justify-center px-5 py-2.5 font-console text-sm font-medium text-white rounded-sm transition-all duration-200 hover:brightness-125"
                 style={{ backgroundColor: "#001FFF" }}
               >
                 Записаться на разбор
-              </a>
+              </button>
             </div>
           </motion.div>
         )}

@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useQuiz } from "./QuizProvider";
 
 const statements = [
   "Пока вы думаете — конкуренты уже нанимают команды и строят воронки.",
@@ -9,6 +10,7 @@ const statements = [
 ];
 
 export default function Urgency() {
+  const { openQuiz } = useQuiz();
   return (
     <section
       className="relative py-20 md:py-24 px-6 overflow-hidden"
@@ -72,8 +74,8 @@ export default function Urgency() {
             Запишитесь на разбор сегодня. Через 15 минут вы будете знать, с чего начать.
           </p>
 
-          <motion.a
-            href="#cta"
+          <motion.button
+            onClick={openQuiz}
             className="inline-block bg-accent text-white font-console font-bold uppercase px-8 py-4 urgency-cta-pulse"
             style={{
               boxShadow:
@@ -88,7 +90,7 @@ export default function Urgency() {
             transition={{ type: "spring", stiffness: 300 }}
           >
             Записаться на разбор
-          </motion.a>
+          </motion.button>
         </motion.div>
       </div>
 

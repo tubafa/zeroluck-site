@@ -12,7 +12,6 @@ import FAQ from "@/components/FAQ";
 import CTA from "@/components/CTA";
 import Footer from "@/components/Footer";
 import CostSection from "@/components/CostSection";
-import MidCTA from "@/components/MidCTA";
 import Timeline90 from "@/components/Timeline90";
 import CursorGlow from "@/components/CursorGlow";
 import CursorTrail from "@/components/CursorTrail";
@@ -28,10 +27,13 @@ import CaseIGaming from "@/components/CaseIGaming";
 import AgencyComparison from "@/components/AgencyComparison";
 import Reporting from "@/components/Reporting";
 import Urgency from "@/components/Urgency";
+import QuizProvider from "@/components/QuizProvider";
+import QuizModal from "@/components/QuizModal";
 
 
 export default function Home() {
   return (
+    <QuizProvider>
     <main>
       <Preloader />
       <ParallaxGrid />
@@ -47,8 +49,6 @@ export default function Home() {
       <Problem />
       <GlitchLine />
       <CostSection />
-      <GlitchLine />
-      <MidCTA />
       <GlitchLine />
       <Services />
       <GlitchLine />
@@ -83,6 +83,8 @@ export default function Home() {
       <GlitchLine />
       <CTA />
       <Footer />
+      <QuizModal />
     </main>
+    </QuizProvider>
   );
 }

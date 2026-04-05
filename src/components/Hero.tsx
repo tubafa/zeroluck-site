@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
+import { useQuiz } from "./QuizProvider";
 
 const WORDS = ["маркетинг", "отдел продаж", "система"];
 
@@ -49,6 +50,7 @@ const SUBTITLE_TEXT =
 
 export default function Hero() {
   const word = useWordSwap();
+  const { openQuiz } = useQuiz();
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden hero-grid">
@@ -79,6 +81,20 @@ export default function Hero() {
       ))}
 
       <div className="max-w-5xl mx-auto px-6 text-center flex flex-col items-center justify-center relative z-20">
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.5, ease: "easeOut", delay: 1.8 }}
+          className="font-console uppercase text-center mb-6"
+          style={{
+            fontSize: "14px",
+            letterSpacing: "3px",
+            color: "rgba(255,255,255,0.5)",
+          }}
+        >
+          Строим маркетинговые системы для бизнеса
+        </motion.p>
+
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
@@ -109,14 +125,14 @@ export default function Hero() {
           transition={{ duration: 0.7, ease: "easeOut", delay: 2.8 }}
           className="flex flex-col items-center"
         >
-          <motion.a
-            href="#cta"
+          <motion.button
+            onClick={openQuiz}
             className="inline-block bg-accent text-white font-console font-bold uppercase px-8 py-4 mt-10 glow-blue cta-btn"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.97 }}
           >
             Записаться на бесплатный разбор
-          </motion.a>
+          </motion.button>
           <p className="text-text-secondary mt-4 hero-micro">
             15 минут. Без обязательств. Без продажи.
           </p>

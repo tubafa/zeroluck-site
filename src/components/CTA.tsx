@@ -1,8 +1,10 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useQuiz } from "./QuizProvider";
 
 export default function CTA() {
+  const { openQuiz } = useQuiz();
   return (
     <section id="cta" className="py-20 md:py-24 px-6 text-center">
       <motion.div
@@ -26,15 +28,15 @@ export default function CTA() {
           что делать первым.
         </motion.p>
 
-        <motion.a
-          href="#"
+        <motion.button
+          onClick={openQuiz}
           className="inline-block bg-accent text-white font-console font-bold uppercase px-8 py-4 glow-blue cta-btn"
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.97 }}
           transition={{ type: "spring", stiffness: 300 }}
         >
           Записаться на бесплатный разбор
-        </motion.a>
+        </motion.button>
       </motion.div>
     </section>
   );

@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useQuiz } from "./QuizProvider";
 
 const freeBullets = [
   "Разберём текущую ситуацию в маркетинге и продажах",
@@ -26,9 +27,19 @@ const fullBullets = [
 ];
 
 export default function Services() {
+  const { openQuiz } = useQuiz();
   return (
     <section id="services" className="py-20 md:py-24 px-6">
       <div className="max-w-5xl mx-auto space-y-10">
+        <motion.h2
+          initial={{ opacity: 0, y: 25 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.5 }}
+          transition={{ duration: 0.5, ease: "easeOut" }}
+          className="text-2xl md:text-3xl lg:text-[2.25rem] font-bold uppercase text-white text-center mb-4 heading-glow"
+        >
+          Хотите узнать, где именно вы теряете?
+        </motion.h2>
         {/* Card 1 — Бесплатный разбор */}
         <motion.div
           initial={{ opacity: 0, x: -60 }}
@@ -78,8 +89,8 @@ export default function Services() {
               </motion.li>
             ))}
           </ul>
-          <motion.a
-            href="#cta"
+          <motion.button
+            onClick={openQuiz}
             className="inline-block bg-accent text-white font-console font-bold uppercase px-8 py-4 nav-cta-pulse"
             style={{
               boxShadow: "0 0 20px rgba(0,31,255,0.5), 0 0 40px rgba(0,31,255,0.2)",
@@ -88,7 +99,7 @@ export default function Services() {
             whileTap={{ scale: 0.97 }}
           >
             Записаться на бесплатный разбор
-          </motion.a>
+          </motion.button>
         </motion.div>
 
         {/* Card 2 — Стратегическая сессия $500 */}
@@ -146,14 +157,14 @@ export default function Services() {
               </motion.li>
             ))}
           </ul>
-          <motion.a
-            href="#cta"
+          <motion.button
+            onClick={openQuiz}
             className="inline-block bg-accent text-white font-console font-bold uppercase px-8 py-4 mt-8 glow-blue cta-btn"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.97 }}
           >
             Заказать сессию
-          </motion.a>
+          </motion.button>
         </motion.div>
 
         {/* Card 3 — Полное ведение (Premium) */}
@@ -220,14 +231,14 @@ export default function Services() {
               </motion.li>
             ))}
           </ul>
-          <motion.a
-            href="#cta"
+          <motion.button
+            onClick={openQuiz}
             className="inline-block bg-accent text-white font-console font-bold uppercase px-8 py-4 glow-blue cta-btn"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.97 }}
           >
             Начать полное ведение
-          </motion.a>
+          </motion.button>
         </motion.div>
 
         <motion.p
