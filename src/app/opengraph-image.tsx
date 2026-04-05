@@ -37,7 +37,7 @@ export default async function Image() {
               left: 0,
               width: "100%",
               height: 1,
-              backgroundColor: "rgba(0,31,255,0.45)",
+              backgroundColor: "rgba(0,31,255,0.7)",
               display: "flex",
             }}
           />
@@ -52,7 +52,7 @@ export default async function Image() {
               left: i * 40,
               width: 1,
               height: "100%",
-              backgroundColor: "rgba(0,31,255,0.45)",
+              backgroundColor: "rgba(0,31,255,0.7)",
               display: "flex",
             }}
           />
