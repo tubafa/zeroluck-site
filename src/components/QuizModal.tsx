@@ -42,20 +42,27 @@ export default function QuizModal() {
     return () => { document.body.style.overflow = ""; };
   }, [isOpen]);
 
-  // Reset on open
+  // Reset on open + track quiz open
   useEffect(() => {
     if (isOpen) {
       setStep(1);
       setAnswers(INITIAL_ANSWERS);
       setOtherText("");
       setShowResult(false);
+      // Track quiz opened
+      (window as any).dataLayer?.push({ event: "quiz_opened" });
+      (window as any).fbq?.("track", "Lead");
     }
   }, [isOpen]);
 
   const goNext = useCallback(() => {
     if (step < TOTAL_STEPS) {
-      setStep((s) => s + 1);
+      const nextStep = step + 1;
+      setStep(nextStep);
       setOtherText("");
+      // Track each quiz step
+      (window as any).dataLayer?.push({ event: "quiz_step", step: nextStep });
+      (window as any).fbq?.("trackCustom", "QuizStep", { step: nextStep });
     } else {
       // Generate lead ID and save to localStorage
       const leadId = `lead_${Date.now()}_${Math.random().toString(36).substr(2, 6)}`;
@@ -72,6 +79,9 @@ export default function QuizModal() {
       localStorage.setItem("zeroluck_quiz", JSON.stringify(data));
       console.log("Quiz completed:", data);
       setShowResult(true);
+      // Track quiz completion
+      (window as any).dataLayer?.push({ event: "quiz_completed" });
+      (window as any).fbq?.("track", "CompleteRegistration");
     }
   }, [step, answers]);
 
@@ -495,12 +505,18 @@ function StepPain({
 /* ----- Result Screen with Cal.com ----- */
 function ResultScreen() {
   useEffect(() => {
+    const trackBooking = () => {
+      (window as any).dataLayer?.push({ event: "cal_booking_confirmed" });
+      (window as any).fbq?.("track", "Schedule");
+    };
+
     // Listen for Cal.com booking success via postMessage
     const handleMessage = (e: MessageEvent) => {
       if (
         e.data?.type === "CAL:bookingSuccessful" ||
         (typeof e.data === "string" && e.data.includes("bookingSuccessful"))
       ) {
+        trackBooking();
         setTimeout(() => {
           window.location.href = "/thank-you";
         }, 2000);
@@ -515,6 +531,7 @@ function ResultScreen() {
         Cal("on", {
           action: "bookingSuccessful",
           callback: () => {
+            trackBooking();
             setTimeout(() => {
               window.location.href = "/thank-you";
             }, 2000);

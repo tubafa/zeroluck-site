@@ -13,6 +13,7 @@ function ThankYouContent() {
 
   useEffect(() => {
     (window as any).dataLayer?.push({ event: "booking_confirmed" });
+    (window as any).fbq?.("track", "Purchase");
 
     try {
       const raw = localStorage.getItem("zeroluck_lead");
