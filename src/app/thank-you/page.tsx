@@ -3,8 +3,13 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { QRCodeSVG } from "qrcode.react";
+import QuizProvider from "@/components/QuizProvider";
+import QuizModal from "@/components/QuizModal";
+import Navbar from "@/components/Navbar";
+import CursorGlow from "@/components/CursorGlow";
+import CursorTrail from "@/components/CursorTrail";
 
-export default function ThankYouPage() {
+function ThankYouContent() {
   const [telegramLink, setTelegramLink] = useState("https://t.me/zeroluck");
 
   useEffect(() => {
@@ -27,15 +32,7 @@ export default function ThankYouPage() {
   }, []);
 
   return (
-    <div
-      className="min-h-screen flex items-center justify-center px-4 py-16"
-      style={{
-        background: "#000",
-        backgroundImage:
-          "linear-gradient(rgba(0,31,255,0.08) 1px, transparent 1px), linear-gradient(90deg, rgba(0,31,255,0.08) 1px, transparent 1px)",
-        backgroundSize: "40px 40px",
-      }}
-    >
+    <div className="min-h-screen flex items-center justify-center px-4 pt-24 pb-16">
       <div className="w-full max-w-[640px] text-center">
         {/* Green checkmark */}
         <div className="flex justify-center mb-8">
@@ -53,67 +50,76 @@ export default function ThankYouPage() {
 
         {/* Title */}
         <h1
-          className="font-console font-bold text-white uppercase mb-4"
+          className="font-console font-bold text-white uppercase mb-4 heading-glow"
           style={{ fontSize: "clamp(26px, 4vw, 36px)", lineHeight: 1.2 }}
         >
-          {"ОТЛИЧНО, МЫ ВАС ЖДЁМ!"}
+          ОТЛИЧНО, МЫ ВАС ЖДЁМ!
         </h1>
 
         {/* Subtitle */}
         <p
-          className="font-console mb-12"
-          style={{ fontSize: 18, color: "#B0B0B0" }}
+          className="font-console text-white mb-3"
+          style={{ fontSize: "clamp(16px, 2.5vw, 18px)" }}
         >
           Разбор запланирован. Пока ждёте — подготовьтесь.
         </p>
 
+        {/* Reminder moved up — accent line */}
+        <p
+          className="font-console mb-12"
+          style={{ fontSize: "clamp(14px, 2vw, 16px)", color: "#001FFF" }}
+        >
+          ⏰ Напоминание придёт за 1 час до разбора
+        </p>
+
         {/* Two cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-10">
           <div
-            className="text-left font-console text-sm text-white/80"
+            className="text-left font-console text-white border-glow"
             style={{
-              border: "1px solid rgba(0,31,255,0.3)",
+              fontSize: "clamp(16px, 2.5vw, 18px)",
               padding: 24,
             }}
           >
-            {"📋 Мини-аудит по вашим ответам — отправим до встречи"}
+            📋 Мини-аудит по вашим ответам — отправим до встречи
           </div>
           <div
-            className="text-left font-console text-sm text-white/80"
+            className="text-left font-console text-white border-glow"
             style={{
-              border: "1px solid rgba(0,31,255,0.3)",
+              fontSize: "clamp(16px, 2.5vw, 18px)",
               padding: 24,
             }}
           >
-            {"📎 PDF: 7 ошибок при построении отдела маркетинга и продаж — отправим сразу"}
+            📎 PDF: 7 ошибок при построении отдела маркетинга и продаж — отправим сразу
           </div>
         </div>
 
-        {/* CTA button */}
+        {/* CTA button with pulse */}
         <div className="mb-2">
           <a
             href={telegramLink}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-block w-full font-console text-sm font-bold uppercase tracking-wider text-white transition-all duration-200 hover:brightness-110"
+            className="inline-block w-full font-console font-bold uppercase tracking-wider text-white nav-cta-pulse glow-blue cta-btn transition-all duration-200 hover:brightness-125"
             style={{
               maxWidth: 400,
-              padding: "16px 32px",
+              padding: "18px 32px",
               background: "#001FFF",
+              fontSize: "clamp(16px, 2.5vw, 18px)",
             }}
           >
             ЗАБРАТЬ МАТЕРИАЛЫ
           </a>
         </div>
-        <p className="font-console text-xs mb-12" style={{ color: "#666" }}>
+        <p className="font-console mb-12" style={{ fontSize: 14, color: "#666" }}>
           Бот отправит оба материала. Без спама.
         </p>
 
         {/* QR code section */}
         <div className="mb-12">
           <p
-            className="font-console text-sm mb-4"
-            style={{ color: "#B0B0B0" }}
+            className="font-console mb-4 text-white"
+            style={{ fontSize: "clamp(16px, 2.5vw, 18px)" }}
           >
             Если вы с компьютера — отсканируйте
           </p>
@@ -128,19 +134,27 @@ export default function ThankYouPage() {
           </div>
         </div>
 
-        {/* Secondary links */}
-        <div className="space-y-3">
-          <Link
-            href="/"
-            className="block font-console text-sm text-white/50 hover:text-white transition-colors underline underline-offset-4"
-          >
-            Вернуться на главную
-          </Link>
-          <p className="font-console text-xs" style={{ color: "#444" }}>
-            Напоминание придёт за 1 час до разбора
-          </p>
-        </div>
+        {/* Back to home */}
+        <Link
+          href="/"
+          className="inline-block font-console text-white/60 hover:text-white transition-colors underline underline-offset-4"
+          style={{ fontSize: "clamp(16px, 2.5vw, 18px)" }}
+        >
+          Вернуться на главную
+        </Link>
       </div>
     </div>
+  );
+}
+
+export default function ThankYouPage() {
+  return (
+    <QuizProvider>
+      <CursorGlow />
+      <CursorTrail />
+      <Navbar />
+      <ThankYouContent />
+      <QuizModal />
+    </QuizProvider>
   );
 }
