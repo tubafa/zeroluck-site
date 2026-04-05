@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useQuiz } from "./QuizProvider";
 
 const rows = [
   {
@@ -26,6 +27,7 @@ const rows = [
 ];
 
 export default function AgencyComparison() {
+  const { openQuiz } = useQuiz();
   return (
     <section className="py-20 md:py-24 px-6">
       <div className="max-w-5xl mx-auto">
@@ -143,14 +145,14 @@ export default function AgencyComparison() {
           transition={{ duration: 0.5, delay: 0.4 }}
           className="text-center"
         >
-          <motion.a
-            href="#cta"
+          <motion.button
+            onClick={openQuiz}
             className="inline-block bg-accent text-white font-console font-bold uppercase px-8 py-4 glow-blue cta-btn"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.97 }}
           >
             Обсудить на бесплатном разборе
-          </motion.a>
+          </motion.button>
         </motion.div>
       </div>
     </section>

@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useQuiz } from "./QuizProvider";
 
 const steps = [
   {
@@ -64,6 +65,7 @@ function StepCard({ step }: { step: typeof steps[0] }) {
 }
 
 export default function Process() {
+  const { openQuiz } = useQuiz();
   return (
     <section id="process" className="py-20 md:py-24 px-6">
       <motion.h2
@@ -99,14 +101,14 @@ export default function Process() {
         transition={{ duration: 0.5, delay: 0.3 }}
         className="text-center mt-16"
       >
-        <motion.a
-          href="#cta"
+        <motion.button
+          onClick={openQuiz}
           className="inline-block bg-accent text-white font-console font-bold uppercase px-8 py-4 glow-blue cta-btn"
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.97 }}
         >
           Записаться на бесплатный разбор
-        </motion.a>
+        </motion.button>
       </motion.div>
     </section>
   );

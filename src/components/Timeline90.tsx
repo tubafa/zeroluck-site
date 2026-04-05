@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useQuiz } from "./QuizProvider";
 
 const milestones = [
   {
@@ -22,6 +23,7 @@ const milestones = [
 ];
 
 export default function Timeline90() {
+  const { openQuiz } = useQuiz();
   return (
     <section className="py-20 md:py-28 px-6 overflow-hidden">
       <div className="max-w-5xl mx-auto">
@@ -165,8 +167,8 @@ export default function Timeline90() {
           <p className="text-text-secondary text-lg mb-8">
             И всё это — начинается с 15-минутного разбора.
           </p>
-          <motion.a
-            href="#cta"
+          <motion.button
+            onClick={openQuiz}
             className="inline-block bg-accent text-white font-console font-bold uppercase px-8 py-4"
             style={{
               boxShadow: "0 0 20px rgba(0,31,255,0.5), 0 0 40px rgba(0,31,255,0.2)",
@@ -179,7 +181,7 @@ export default function Timeline90() {
             transition={{ type: "spring", stiffness: 300 }}
           >
             Записаться на разбор
-          </motion.a>
+          </motion.button>
         </motion.div>
       </div>
     </section>
