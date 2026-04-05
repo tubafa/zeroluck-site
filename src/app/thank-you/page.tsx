@@ -12,8 +12,14 @@ function ThankYouContent() {
   const [telegramLink, setTelegramLink] = useState("https://t.me/zeroluck");
 
   useEffect(() => {
-    (window as any).dataLayer?.push({ event: "booking_confirmed" });
-    (window as any).fbq?.("track", "Purchase");
+    // Delay to ensure GTM and Meta Pixel are loaded
+    const timer = setTimeout(() => {
+      (window as any).dataLayer = (window as any).dataLayer || [];
+      (window as any).dataLayer.push({ event: "booking_confirmed" });
+      if (typeof (window as any).fbq === "function") {
+        (window as any).fbq("track", "Purchase");
+      }
+    }, 1000);
 
     try {
       const raw = localStorage.getItem("zeroluck_lead");
@@ -27,6 +33,8 @@ function ThankYouContent() {
     } catch {
       // ignore
     }
+
+    return () => clearTimeout(timer);
   }, []);
 
   return (
