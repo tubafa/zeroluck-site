@@ -128,8 +128,13 @@ export default function QuizModal() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 30, scale: 0.97 }}
             transition={{ duration: 0.3 }}
-            className="relative w-full max-w-[600px] mx-4 max-h-[90vh] overflow-y-auto"
-            style={{ padding: "48px", paddingTop: "32px" }}
+            className="relative w-full max-w-[600px] mx-4 max-h-[90vh] overflow-y-auto rounded-sm"
+            style={{
+              padding: "48px",
+              paddingTop: "32px",
+              background: "#0a0a0a",
+              border: "1px solid rgba(255,255,255,0.08)",
+            }}
           >
             {/* Close button */}
             <button
