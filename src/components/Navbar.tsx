@@ -15,7 +15,7 @@ const navLinks = [
   { label: "FAQ", href: "#faq" },
 ];
 
-export default function Navbar() {
+export default function Navbar({ hideCTA = false }: { hideCTA?: boolean } = {}) {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const { openQuiz } = useQuiz();
@@ -63,13 +63,15 @@ export default function Navbar() {
             ))}
           </div>
 
-          <button
-            onClick={openQuiz}
-            className="hidden md:inline-flex items-center px-5 py-2 font-console text-sm font-medium text-white rounded-sm nav-cta-pulse transition-all duration-200 hover:brightness-125"
-            style={{ backgroundColor: "#001FFF" }}
-          >
-            Записаться на разбор
-          </button>
+          {!hideCTA && (
+            <button
+              onClick={openQuiz}
+              className="hidden md:inline-flex items-center px-5 py-2 font-console text-sm font-medium text-white rounded-sm nav-cta-pulse transition-all duration-200 hover:brightness-125"
+              style={{ backgroundColor: "#001FFF" }}
+            >
+              Записаться на разбор
+            </button>
+          )}
 
           <button
             onClick={() => setMobileOpen((prev) => !prev)}
@@ -103,13 +105,15 @@ export default function Navbar() {
                   {link.label}
                 </a>
               ))}
-              <button
-                onClick={() => { closeMobile(); openQuiz(); }}
-                className="mt-2 inline-flex items-center justify-center px-5 py-2.5 font-console text-sm font-medium text-white rounded-sm transition-all duration-200 hover:brightness-125"
-                style={{ backgroundColor: "#001FFF" }}
-              >
-                Записаться на разбор
-              </button>
+              {!hideCTA && (
+                <button
+                  onClick={() => { closeMobile(); openQuiz(); }}
+                  className="mt-2 inline-flex items-center justify-center px-5 py-2.5 font-console text-sm font-medium text-white rounded-sm transition-all duration-200 hover:brightness-125"
+                  style={{ backgroundColor: "#001FFF" }}
+                >
+                  Записаться на разбор
+                </button>
+              )}
             </div>
           </motion.div>
         )}

@@ -152,7 +152,7 @@ export default function ThankYouPage() {
     <QuizProvider>
       <CursorGlow />
       <CursorTrail />
-      <Navbar />
+      <Navbar hideCTA />
       <ThankYouContent />
       <QuizModal />
     </QuizProvider>
