@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Link from "next/link";
 import { QRCodeSVG } from "qrcode.react";
 import QuizProvider from "@/components/QuizProvider";
 import QuizModal from "@/components/QuizModal";
@@ -13,10 +12,8 @@ function ThankYouContent() {
   const [telegramLink, setTelegramLink] = useState("https://t.me/zeroluck");
 
   useEffect(() => {
-    // Push dataLayer event
     (window as any).dataLayer?.push({ event: "booking_confirmed" });
 
-    // Read lead ID from localStorage
     try {
       const raw = localStorage.getItem("zeroluck_lead");
       if (raw) {
@@ -27,14 +24,14 @@ function ThankYouContent() {
         }
       }
     } catch {
-      // ignore parse errors
+      // ignore
     }
   }, []);
 
   return (
     <div className="min-h-screen flex items-center justify-center px-4 pt-24 pb-16">
       <div className="w-full max-w-[640px] text-center">
-        {/* Green checkmark */}
+        {/* SECTION 1 — Confirmation */}
         <div className="flex justify-center mb-8">
           <svg width="72" height="72" viewBox="0 0 72 72" fill="none">
             <circle cx="36" cy="36" r="34" stroke="#00FF88" strokeWidth="3" />
@@ -48,108 +45,76 @@ function ThankYouContent() {
           </svg>
         </div>
 
-        {/* Title */}
         <h1
-          className="font-console font-bold text-white uppercase mb-4 heading-glow"
+          className="font-console font-bold text-white uppercase mb-5 heading-glow"
           style={{ fontSize: "clamp(26px, 4vw, 36px)", lineHeight: 1.2 }}
         >
           ОТЛИЧНО, МЫ ВАС ЖДЁМ!
         </h1>
 
-        {/* Subtitle */}
         <p
-          className="font-console text-white mb-5"
-          style={{ fontSize: "clamp(16px, 2.5vw, 18px)" }}
+          className="font-console text-white mb-16"
+          style={{ fontSize: "clamp(16px, 2.5vw, 18px)", lineHeight: 1.6 }}
         >
-          Разбор запланирован. Пока ждёте — подготовьтесь.
+          Проверьте почту и подтвердите встречу. Напоминание придёт за 1 час.
         </p>
 
-        {/* Email reminder — important action */}
-        <p
-          className="font-console text-white mb-4"
-          style={{ fontSize: "clamp(18px, 2.5vw, 20px)", lineHeight: 1.6 }}
+        {/* SECTION 2 — CTA to bot */}
+        <div
+          className="border-glow text-left mb-8"
+          style={{ padding: 32 }}
         >
-          {"📩 Проверьте почту — мы отправили приглашение в календарь. Нажмите «Да» чтобы встреча появилась в вашем календаре."}
-        </p>
-
-        {/* Reminder — accent line */}
-        <p
-          className="font-console mb-12"
-          style={{ fontSize: "clamp(14px, 2vw, 16px)", color: "#001FFF" }}
-        >
-          ⏰ Напоминание придёт за 1 час до разбора
-        </p>
-
-        {/* Two cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-10">
-          <div
-            className="text-left font-console text-white border-glow"
-            style={{
-              fontSize: "clamp(16px, 2.5vw, 18px)",
-              padding: 24,
-            }}
+          <h2
+            className="font-console font-bold text-white uppercase mb-6"
+            style={{ fontSize: "clamp(18px, 2.5vw, 22px)" }}
           >
-            📋 Мини-аудит по вашим ответам — отправим до встречи
-          </div>
-          <div
-            className="text-left font-console text-white border-glow"
-            style={{
-              fontSize: "clamp(16px, 2.5vw, 18px)",
-              padding: 24,
-            }}
-          >
-            📎 PDF: 7 ошибок при построении отдела маркетинга и продаж — отправим сразу
-          </div>
+            Пока ждёте — заберите материалы
+          </h2>
+          <ul className="space-y-4">
+            <li
+              className="font-console text-white flex items-start gap-3"
+              style={{ fontSize: "clamp(16px, 2.5vw, 18px)" }}
+            >
+              <span className="shrink-0 mt-0.5" style={{ color: "#001FFF" }}>///</span>
+              Мини-аудит по вашим ответам — отправим до встречи
+            </li>
+            <li
+              className="font-console text-white flex items-start gap-3"
+              style={{ fontSize: "clamp(16px, 2.5vw, 18px)" }}
+            >
+              <span className="shrink-0 mt-0.5" style={{ color: "#001FFF" }}>///</span>
+              PDF: 7 ошибок при построении отдела маркетинга и продаж
+            </li>
+          </ul>
         </div>
 
-        {/* CTA button with pulse */}
-        <div className="mb-2">
+        {/* Button + QR inline on desktop, stacked on mobile */}
+        <div className="flex flex-col md:flex-row items-center justify-center gap-6 mb-3">
           <a
             href={telegramLink}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-block w-full font-console font-bold uppercase tracking-wider text-white nav-cta-pulse glow-blue cta-btn transition-all duration-200 hover:brightness-125"
+            className="inline-block font-console font-bold uppercase tracking-wider text-white nav-cta-pulse glow-blue cta-btn transition-all duration-200 hover:brightness-125 text-center"
             style={{
-              maxWidth: 400,
-              padding: "18px 32px",
+              padding: "18px 40px",
               background: "#001FFF",
               fontSize: "clamp(16px, 2.5vw, 18px)",
             }}
           >
             ЗАБРАТЬ МАТЕРИАЛЫ
           </a>
+          <QRCodeSVG
+            value={telegramLink}
+            size={120}
+            bgColor="transparent"
+            fgColor="#FFFFFF"
+            level="M"
+          />
         </div>
-        <p className="font-console mb-12" style={{ fontSize: 14, color: "#666" }}>
+
+        <p className="font-console" style={{ fontSize: 14, color: "#666" }}>
           Бот отправит оба материала. Без спама.
         </p>
-
-        {/* QR code section */}
-        <div className="mb-12">
-          <p
-            className="font-console mb-4 text-white"
-            style={{ fontSize: "clamp(16px, 2.5vw, 18px)" }}
-          >
-            Если вы с компьютера — отсканируйте
-          </p>
-          <div className="flex justify-center">
-            <QRCodeSVG
-              value={telegramLink}
-              size={160}
-              bgColor="transparent"
-              fgColor="#FFFFFF"
-              level="M"
-            />
-          </div>
-        </div>
-
-        {/* Back to home */}
-        <Link
-          href="/"
-          className="inline-block font-console text-white/60 hover:text-white transition-colors underline underline-offset-4"
-          style={{ fontSize: "clamp(16px, 2.5vw, 18px)" }}
-        >
-          Вернуться на главную
-        </Link>
       </div>
     </div>
   );
