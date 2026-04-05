@@ -55,35 +55,68 @@ export default function QuizModal() {
     }
   }, [isOpen]);
 
-  const goNext = useCallback(() => {
+  // Fire per-step tracking event with the value the user just selected
+  const trackStep = useCallback((currentStep: number, updatedAnswers: QuizAnswers) => {
+    const dl = (window as any).dataLayer;
+    const fb = (window as any).fbq;
+    switch (currentStep) {
+      case 1:
+        dl?.push({ event: "quiz_step_1", niche: updatedAnswers.niche });
+        fb?.("trackCustom", "QuizStep1", { niche: updatedAnswers.niche });
+        break;
+      case 2:
+        dl?.push({ event: "quiz_step_2", company_size: updatedAnswers.companySize });
+        fb?.("trackCustom", "QuizStep2", { company_size: updatedAnswers.companySize });
+        break;
+      case 3:
+        dl?.push({ event: "quiz_step_3", marketing_status: updatedAnswers.marketing });
+        fb?.("trackCustom", "QuizStep3", { marketing_status: updatedAnswers.marketing });
+        break;
+      case 4:
+        dl?.push({ event: "quiz_step_4", processes: updatedAnswers.processes });
+        fb?.("trackCustom", "QuizStep4", { processes: updatedAnswers.processes.join(",") });
+        break;
+      case 5:
+        dl?.push({ event: "quiz_step_5", revenue: updatedAnswers.revenue });
+        fb?.("trackCustom", "QuizStep5", { revenue: updatedAnswers.revenue });
+        break;
+      case 6:
+        dl?.push({ event: "quiz_step_6", main_pain: updatedAnswers.mainPain });
+        fb?.("trackCustom", "QuizStep6", { main_pain: updatedAnswers.mainPain });
+        break;
+    }
+  }, []);
+
+  const goNext = useCallback((trackingAnswers?: QuizAnswers) => {
     if (step < TOTAL_STEPS) {
-      const nextStep = step + 1;
-      setStep(nextStep);
+      if (trackingAnswers) trackStep(step, trackingAnswers);
+      setStep(step + 1);
       setOtherText("");
-      // Track each quiz step
-      (window as any).dataLayer?.push({ event: "quiz_step", step: nextStep });
-      (window as any).fbq?.("trackCustom", "QuizStep", { step: nextStep });
     } else {
+      if (trackingAnswers) trackStep(step, trackingAnswers);
+
       // Generate lead ID and save to localStorage
+      const finalAnswers = trackingAnswers || answers;
       const leadId = `lead_${Date.now()}_${Math.random().toString(36).substr(2, 6)}`;
       const leadData = {
         id: leadId,
-        answers: { ...answers },
+        answers: { ...finalAnswers },
         timestamp: new Date().toISOString(),
       };
       localStorage.setItem("zeroluck_lead", JSON.stringify(leadData));
       console.log("Lead created:", leadData);
 
       // Also save quiz data separately (legacy)
-      const data = { ...answers, completedAt: new Date().toISOString() };
+      const data = { ...finalAnswers, completedAt: new Date().toISOString() };
       localStorage.setItem("zeroluck_quiz", JSON.stringify(data));
       console.log("Quiz completed:", data);
       setShowResult(true);
-      // Track quiz completion
-      (window as any).dataLayer?.push({ event: "quiz_completed" });
+
+      // Track quiz completion with all answers
+      (window as any).dataLayer?.push({ event: "quiz_complete", answers: { ...finalAnswers } });
       (window as any).fbq?.("track", "CompleteRegistration");
     }
-  }, [step, answers]);
+  }, [step, answers, trackStep]);
 
   const goBack = useCallback(() => {
     if (showResult) {
@@ -95,14 +128,16 @@ export default function QuizModal() {
   }, [step, showResult]);
 
   const selectOption = (key: keyof QuizAnswers, value: string) => {
-    setAnswers((prev) => ({ ...prev, [key]: value }));
-    goNext();
+    const updated = { ...answers, [key]: value };
+    setAnswers(updated);
+    goNext(updated);
   };
 
   const selectOther = (key: keyof QuizAnswers) => {
     if (otherText.trim()) {
-      setAnswers((prev) => ({ ...prev, [key]: otherText.trim() }));
-      goNext();
+      const updated = { ...answers, [key]: otherText.trim() };
+      setAnswers(updated);
+      goNext(updated);
     }
   };
 
@@ -217,7 +252,7 @@ export default function QuizModal() {
                       <StepProcesses
                         selected={answers.processes}
                         onToggle={toggleProcess}
-                        onNext={goNext}
+                        onNext={() => goNext(answers)}
                       />
                     )}
                     {step === 5 && (
