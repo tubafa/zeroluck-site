@@ -58,13 +58,21 @@ function ThankYouContent() {
 
         {/* Subtitle */}
         <p
-          className="font-console text-white mb-3"
+          className="font-console text-white mb-5"
           style={{ fontSize: "clamp(16px, 2.5vw, 18px)" }}
         >
           Разбор запланирован. Пока ждёте — подготовьтесь.
         </p>
 
-        {/* Reminder moved up — accent line */}
+        {/* Email reminder — important action */}
+        <p
+          className="font-console text-white mb-4"
+          style={{ fontSize: "clamp(18px, 2.5vw, 20px)", lineHeight: 1.6 }}
+        >
+          {"📩 Проверьте почту — мы отправили приглашение в календарь. Нажмите «Да» чтобы встреча появилась в вашем календаре."}
+        </p>
+
+        {/* Reminder — accent line */}
         <p
           className="font-console mb-12"
           style={{ fontSize: "clamp(14px, 2vw, 16px)", color: "#001FFF" }}

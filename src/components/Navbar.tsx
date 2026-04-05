@@ -63,15 +63,13 @@ export default function Navbar({ hideCTA = false }: { hideCTA?: boolean } = {}) 
             ))}
           </div>
 
-          {!hideCTA && (
-            <button
-              onClick={openQuiz}
-              className="hidden md:inline-flex items-center px-5 py-2 font-console text-sm font-medium text-white rounded-sm nav-cta-pulse transition-all duration-200 hover:brightness-125"
-              style={{ backgroundColor: "#001FFF" }}
-            >
-              Записаться на разбор
-            </button>
-          )}
+          <button
+            onClick={openQuiz}
+            className="hidden md:inline-flex items-center px-5 py-2 font-console text-sm font-medium text-white rounded-sm nav-cta-pulse transition-all duration-200 hover:brightness-125"
+            style={{ backgroundColor: "#001FFF", visibility: hideCTA ? "hidden" : "visible" }}
+          >
+            Записаться на разбор
+          </button>
 
           <button
             onClick={() => setMobileOpen((prev) => !prev)}
