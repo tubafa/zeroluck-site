@@ -115,6 +115,25 @@ export default function QuizModal() {
       // Track quiz completion with all answers
       (window as any).dataLayer?.push({ event: "quiz_complete", answers: { ...finalAnswers } });
       (window as any).fbq?.("track", "CompleteRegistration");
+
+      // Send to Google Sheets (fire and forget)
+      fetch("https://script.google.com/macros/s/AKfycbwDCILkdei6zNpMxCxtBZtCXQA0xnPHgp_q581IFS7YkrwawOZnoGkus85pHf9IZomGCg/exec", {
+        method: "POST",
+        mode: "no-cors",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: "",
+          email: "",
+          phone: "",
+          niche: finalAnswers.niche,
+          company_size: finalAnswers.companySize,
+          marketing_status: finalAnswers.marketing,
+          processes: finalAnswers.processes,
+          revenue: finalAnswers.revenue,
+          main_pain: finalAnswers.mainPain,
+          lead_id: leadId,
+        }),
+      }).catch(() => {});
     }
   }, [step, answers, trackStep]);
 
