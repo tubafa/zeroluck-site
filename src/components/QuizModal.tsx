@@ -31,6 +31,7 @@ export default function QuizModal() {
   const [answers, setAnswers] = useState<QuizAnswers>(INITIAL_ANSWERS);
   const [otherText, setOtherText] = useState("");
   const [showResult, setShowResult] = useState(false);
+  const [leadId, setLeadId] = useState<string>("");
 
   // Lock body scroll when modal is open
   useEffect(() => {
@@ -98,6 +99,7 @@ export default function QuizModal() {
       // Generate lead ID and save to localStorage
       const finalAnswers = trackingAnswers || answers;
       const leadId = `lead_${Date.now()}_${Math.random().toString(36).substr(2, 6)}`;
+      setLeadId(leadId);
       const leadData = {
         id: leadId,
         answers: { ...finalAnswers },
@@ -245,7 +247,7 @@ export default function QuizModal() {
                 transition={{ duration: 0.2 }}
               >
                 {showResult ? (
-                  <ResultScreen />
+                  <ResultScreen leadId={leadId} />
                 ) : (
                   <>
                     {step === 1 && (
@@ -557,7 +559,7 @@ function StepPain({
 }
 
 /* ----- Result Screen with Cal.com ----- */
-function ResultScreen() {
+function ResultScreen({ leadId }: { leadId: string }) {
   useEffect(() => {
     const trackBooking = () => {
       (window as any).dataLayer?.push({ event: "cal_booking_confirmed" });
@@ -616,6 +618,7 @@ function ResultScreen() {
           config={{
             theme: "dark",
             layout: "month_view",
+            lead_id: leadId,
           }}
           style={{ width: "100%", height: "100%", minHeight: 400 }}
         />
