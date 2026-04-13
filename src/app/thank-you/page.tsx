@@ -9,7 +9,7 @@ import CursorGlow from "@/components/CursorGlow";
 import CursorTrail from "@/components/CursorTrail";
 
 function ThankYouContent() {
-  const [telegramLink, setTelegramLink] = useState("https://t.me/zeroluck");
+  const [telegramLink, setTelegramLink] = useState("https://t.me/zeroluck_solutions");
 
   useEffect(() => {
     // Delay to ensure GTM and Meta Pixel are loaded
@@ -26,7 +26,7 @@ function ThankYouContent() {
       if (raw) {
         const lead = JSON.parse(raw);
         if (lead.id) {
-          setTelegramLink(`https://t.me/zeroluck?start=${lead.id}`);
+          setTelegramLink(`https://t.me/zeroluck_solutions?start=${lead.id}`);
           console.log("Lead data:", lead);
         }
       }

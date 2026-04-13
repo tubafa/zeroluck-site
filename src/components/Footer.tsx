@@ -17,7 +17,7 @@ export default function Footer() {
 
         <div className="flex gap-6">
           <a
-            href="https://t.me/zeroluck"
+            href="https://t.me/zeroluck_solutions"
             target="_blank"
             rel="noopener noreferrer"
             className="text-text-secondary hover:text-accent transition-colors text-sm font-console"
@@ -25,13 +25,17 @@ export default function Footer() {
             Telegram
           </a>
           <a
-            href="#"
+            href="https://www.linkedin.com/company/zeroluck-solutions"
+            target="_blank"
+            rel="noopener noreferrer"
             className="text-text-secondary hover:text-accent transition-colors text-sm font-console"
           >
             LinkedIn
           </a>
           <a
-            href="#"
+            href="https://www.instagram.com/zeroluck.solutions"
+            target="_blank"
+            rel="noopener noreferrer"
             className="text-text-secondary hover:text-accent transition-colors text-sm font-console"
           >
             Instagram
